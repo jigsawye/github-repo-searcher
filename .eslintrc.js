@@ -20,8 +20,11 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'off',
 
+    'arrow-body-style': 'off',
+
     'prettier/prettier': 'error',
 
+    'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
