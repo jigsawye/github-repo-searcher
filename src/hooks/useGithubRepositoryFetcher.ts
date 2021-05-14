@@ -53,6 +53,7 @@ const useGithubRepositoryFetcher = (
     fetchWithSearchValue,
     {
       initialData:
+        // only persist initialData on first time render
         persistData && !hasMounted.current ? [persistData] : undefined,
       shouldRetryOnError: false,
     }
@@ -61,6 +62,7 @@ const useGithubRepositoryFetcher = (
   const data = typeof originalData !== 'number' ? originalData : [];
   const error = typeof originalError !== 'number' ? originalError : undefined;
 
+  // reduce the data items
   const repositories =
     data?.reduce<Repository[]>(
       (acc, curr) => ('items' in curr ? [...acc, ...curr.items] : acc),
@@ -83,6 +85,7 @@ const useGithubRepositoryFetcher = (
   };
 
   return {
+    // The github api sometimes return duplicate data on difference page
     repositories: uniqBy(repositories, 'id'),
     loading,
     error,

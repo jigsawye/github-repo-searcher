@@ -1,5 +1,4 @@
 import { NextPage, GetServerSideProps } from 'next';
-import Head from 'next/head';
 import { ChangeEventHandler, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
@@ -30,7 +29,10 @@ const Home: NextPage<HomeProps> = ({ persistData, persistQueryValue }) => {
   const { repositories, loading, loadMore, error, revalidate } =
     useGithubRepositoryFetcher(searchValue, persistData);
 
+  // Force reset scroll top after page refresh
+  // to prevent trigger loadMore
   useResetScrollTop();
+  // Sync the search value to url query params
   useSyncRouteQuery(searchValue);
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -59,6 +61,7 @@ const Home: NextPage<HomeProps> = ({ persistData, persistQueryValue }) => {
           />
         )}
         {loading && <Skeletons />}
+        {/* If the API throw error, render a retry button */}
         {error && <RevalidateButton error={error} onClick={revalidate} />}
       </Main>
     </>
@@ -67,6 +70,7 @@ const Home: NextPage<HomeProps> = ({ persistData, persistQueryValue }) => {
 
 export default Home;
 
+// Persist data on SSR if the url contains search value
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   context
 ) => {
