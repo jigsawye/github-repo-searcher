@@ -19,10 +19,7 @@ const RepositoryList: FC<RepositoryListProps> = ({
   return (
     <div>
       {repositories.map((repository) => (
-        <RepositoryCard
-          key={`${repository.id}_${repository.full_name}`}
-          repository={repository}
-        />
+        <RepositoryCard key={repository.id} repository={repository} />
       ))}
       <div ref={ref} />
     </div>

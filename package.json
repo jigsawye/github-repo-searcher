@@ -13,6 +13,7 @@
   "dependencies": {
     "@formatjs/intl-numberformat": "^6.2.10",
     "github-colors": "^2.2.19",
+    "lodash.uniqby": "^4.7.0",
     "next": "10.2.0",
     "react": "17.0.2",
     "react-content-loader": "^6.0.3",
@@ -24,6 +25,7 @@
     "use-debounce": "^6.0.1"
   },
   "devDependencies": {
+    "@types/lodash.uniqby": "^4.7.6",
     "@types/node": "^15.0.1",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",

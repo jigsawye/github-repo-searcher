@@ -1,4 +1,5 @@
 import { useSWRInfinite } from 'swr';
+import uniqBy from 'lodash.uniqby';
 
 import { PER_PAGE, GITHUB_SEARCH_REPOSITORY_URL } from '../constants';
 import { Data, Repository } from '../types';
@@ -81,7 +82,13 @@ const useGithubRepositoryFetcher = (
     }
   };
 
-  return { repositories, loading, error, loadMore, revalidate };
+  return {
+    repositories: uniqBy(repositories, 'id'),
+    loading,
+    error,
+    loadMore,
+    revalidate,
+  };
 };
 
 export { useGithubRepositoryFetcher };
