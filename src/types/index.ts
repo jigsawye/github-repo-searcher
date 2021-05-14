@@ -15,3 +15,8 @@ export type Repository = {
   };
   forks: number;
 };
+
+export type Data = {
+  items: Repository[];
+  total_count: number;
+};

@@ -1,15 +1,30 @@
 import { FC } from 'react';
+import { useInView } from '../../hooks';
 
-import { items } from '../../mock';
+import { Repository } from '../../types';
 
 import { RepositoryCard } from './RepositoryCard';
 
-const RepositoryList: FC = () => {
+interface RepositoryListProps {
+  repositories: Repository[];
+  onLoadMore: () => void;
+}
+
+const RepositoryList: FC<RepositoryListProps> = ({
+  repositories,
+  onLoadMore,
+}) => {
+  const { ref } = useInView(onLoadMore);
+
   return (
     <div>
-      {items.map((repo) => (
-        <RepositoryCard key={repo.id} repo={repo} />
+      {repositories.map((repository) => (
+        <RepositoryCard
+          key={`${repository.id}_${repository.full_name}`}
+          repository={repository}
+        />
       ))}
+      <div ref={ref} />
     </div>
   );
 };

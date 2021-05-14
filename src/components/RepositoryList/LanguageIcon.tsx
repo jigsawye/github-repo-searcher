@@ -15,7 +15,7 @@ interface LanguageColorProps {
 }
 
 const LanguageColor: FC<LanguageColorProps> = ({ language }) => {
-  const { color } = colors.get(language);
+  const { color = '#fff' } = colors.get(language) ?? {};
 
   return <Circle style={{ backgroundColor: color }} />;
 };

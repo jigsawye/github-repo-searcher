@@ -10,7 +10,7 @@ const numberFormatter = new Intl.NumberFormat('en', {
   notation: 'compact',
 });
 
-const Card = styled.div`
+export const Card = styled.div`
   display: flex;
   flex: auto;
   flex-direction: column;
@@ -53,36 +53,38 @@ const CardContentItem = styled.div`
 `;
 
 interface RepositoryCardProps {
-  repo: Repository;
+  repository: Repository;
 }
 
-const RepositoryCard: FC<RepositoryCardProps> = ({ repo }) => {
+const RepositoryCard: FC<RepositoryCardProps> = ({ repository }) => {
   return (
     <Card>
-      <CardTitle href={repo.html_url} target="_blank" rel="noreferrer">
-        {repo.full_name} <GoLinkExternal style={{ marginLeft: 4 }} />
+      <CardTitle href={repository.html_url} target="_blank" rel="noreferrer">
+        {repository.full_name} <GoLinkExternal style={{ marginLeft: 4 }} />
       </CardTitle>
 
-      <CardContent>{repo.description}</CardContent>
+      <CardContent>{repository.description}</CardContent>
       <CardContent>
         <CardContentItem>
           <GoStar style={{ marginRight: 4 }} />
-          {numberFormatter.format(repo.stargazers_count)}
+          {numberFormatter.format(repository.stargazers_count)}
         </CardContentItem>
 
         <CardContentItem>
           <GoRepoForked style={{ marginRight: 4 }} />
-          {numberFormatter.format(repo.forks)}
+          {numberFormatter.format(repository.forks)}
         </CardContentItem>
 
-        {repo.language && (
+        {repository.language && (
           <CardContentItem>
-            <LanguageColor language={repo.language} />
-            {repo.language}
+            <LanguageColor language={repository.language} />
+            {repository.language}
           </CardContentItem>
         )}
 
-        {repo.license && <CardContentItem>{repo.license.name}</CardContentItem>}
+        {repository.license && (
+          <CardContentItem>{repository.license.name}</CardContentItem>
+        )}
       </CardContent>
     </Card>
   );

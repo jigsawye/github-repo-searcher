@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ChangeEventHandler, FC } from 'react';
 import styled from 'styled-components';
 
 import { InputPrefix, InputPrefixWrapper } from './InputPrefix';
@@ -39,10 +39,19 @@ const Input = styled.input`
   }
 `;
 
-const SearchBar: FC = () => {
+interface SearchBarProps {
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ value, onChange }) => {
   return (
     <SearchBarWrapper>
-      <Input placeholder="Search Repository..." />
+      <Input
+        placeholder="Search Repository..."
+        value={value}
+        onChange={onChange}
+      />
       <InputPrefix />
     </SearchBarWrapper>
   );
