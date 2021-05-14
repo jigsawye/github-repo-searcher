@@ -1,5 +1,8 @@
 import { ChangeEventHandler, FC } from 'react';
 import styled from 'styled-components';
+import { BsArrow90DegUp } from 'react-icons/bs';
+
+import { useHasMounted } from '../../hooks/useHasMounted';
 
 import { InputPrefix, InputPrefixWrapper } from './InputPrefix';
 
@@ -39,21 +42,48 @@ const Input = styled.input`
   }
 `;
 
+const SearchHintWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+  font-size: 20px;
+  padding-left: 36px;
+
+  span {
+    margin-left: 8px;
+  }
+`;
+
+const SearchHint: FC = () => {
+  return (
+    <SearchHintWrapper>
+      <BsArrow90DegUp size={32} />
+      <span>
+        Try to type &quot;react&quot; here to start your first search!
+      </span>
+    </SearchHintWrapper>
+  );
+};
+
 interface SearchBarProps {
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 const SearchBar: FC<SearchBarProps> = ({ value, onChange }) => {
+  const hasMounted = useHasMounted();
+
   return (
-    <SearchBarWrapper>
-      <Input
-        placeholder="Search Repository..."
-        value={value}
-        onChange={onChange}
-      />
-      <InputPrefix />
-    </SearchBarWrapper>
+    <>
+      <SearchBarWrapper>
+        <Input
+          placeholder="Search Repository..."
+          value={value}
+          onChange={onChange}
+        />
+        <InputPrefix />
+      </SearchBarWrapper>
+      {value === '' && !hasMounted.current && <SearchHint />}
+    </>
   );
 };
 

@@ -15,6 +15,7 @@ import {
 } from '../hooks';
 import { Data } from '../types';
 import MetaData from '../components/MetaData/MetaData';
+import { EmptyState } from '../components/EmptyState';
 
 interface HomeProps {
   // eslint-disable-next-line camelcase
@@ -59,6 +60,9 @@ const Home: NextPage<HomeProps> = ({ persistData, persistQueryValue }) => {
             repositories={repositories}
             onLoadMore={handleLoadMore}
           />
+        )}
+        {!loading && searchValue && repositories.length === 0 && (
+          <EmptyState searchValue={searchValue} />
         )}
         {loading && <Skeletons />}
         {/* If the API throw error, render a retry button */}

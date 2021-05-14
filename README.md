@@ -2,6 +2,8 @@
 
 A tool for searching GitHub repositories, powered by Next.js.
 
+### [Try it now](https://github-repo-searcher.jigsawye.com/)
+
 ## Getting Started
 
 First, run the development server:
