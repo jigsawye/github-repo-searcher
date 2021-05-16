@@ -1,5 +1,8 @@
 ## GitHub Repo Searcher
 
+[![Build Status](https://travis-ci.com/jigsawye/github-repo-searcher.svg?branch=main)](https://travis-ci.com/jigsawye/github-repo-searcher)
+[![codecov](https://codecov.io/gh/jigsawye/github-repo-searcher/branch/main/graph/badge.svg?token=ONJYU4EX7N)](https://codecov.io/gh/jigsawye/github-repo-searcher)
+
 A tool for searching GitHub repositories, powered by Next.js.
 
 ### [Try it now](https://github-repo-searcher.jigsawye.com/)

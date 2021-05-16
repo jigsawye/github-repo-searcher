@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - "14"
+
+cache:
+  yarn: true
+  directories:
+    - "node_modules"
+
+install:
+  - yarn
+
+script:
+  - yarn lint:ts
+  - yarn lint:style
+  - yarn test:cov
+  - yarn codecov

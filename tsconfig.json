@@ -12,6 +12,10 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": [
+      "node",
+      "jest"
+    ],
     "allowJs": true,
     "noEmit": true,
     "moduleResolution": "node",
@@ -19,7 +23,8 @@
     "isolatedModules": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "__tests__/**"
   ],
   "include": [
     "next-env.d.ts",

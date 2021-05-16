@@ -1,25 +1,11 @@
 import { useSWRInfinite } from 'swr';
 import uniqBy from 'lodash.uniqby';
 
-import { PER_PAGE, GITHUB_SEARCH_REPOSITORY_URL } from '../constants';
+import { PER_PAGE } from '../constants';
 import { Data, Repository } from '../types';
 
 import { useHasMounted } from './useHasMounted';
-
-const fetchWithSearchValue = (page: number, searchValue: string) =>
-  fetch(`${GITHUB_SEARCH_REPOSITORY_URL}&page=${page}&q=${searchValue}`).then(
-    async (res) => {
-      if (!res.ok) {
-        if (res.status === 403) {
-          throw new Error('API rate limit exceeded');
-        }
-
-        throw new Error('An error occurred while fetching the data');
-      }
-
-      return res.json();
-    }
-  );
+import { fetchWithSearchValue } from '../utils/fetchWithSearchValue';
 
 const useGithubRepositoryFetcher = (
   searchValue: string,

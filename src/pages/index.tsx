@@ -61,7 +61,7 @@ const Home: NextPage<HomeProps> = ({ persistData, persistQueryValue }) => {
             onLoadMore={handleLoadMore}
           />
         )}
-        {!loading && searchValue && repositories.length === 0 && (
+        {!loading && !error && searchValue && repositories.length === 0 && (
           <EmptyState searchValue={searchValue} />
         )}
         {loading && <Skeletons />}

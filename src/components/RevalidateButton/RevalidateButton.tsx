@@ -43,7 +43,7 @@ interface RevalidateButtonProps {
 }
 
 const RevalidateButton: FC<RevalidateButtonProps> = ({ onClick, error }) => {
-  const timer = useRef<NodeJS.Timer | null>(null);
+  const timer = useRef<number | null>(null);
   const [time, setTime] = useState(0);
 
   const startTimer = () => {
@@ -53,7 +53,7 @@ const RevalidateButton: FC<RevalidateButtonProps> = ({ onClick, error }) => {
 
     setTime(5);
 
-    timer.current = setInterval(() => {
+    timer.current = window.setInterval(() => {
       setTime((prev) => (prev === 0 ? 0 : prev - 1));
     }, 1000);
   };

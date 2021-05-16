@@ -83,6 +83,7 @@ const SearchBar: FC<SearchBarProps> = ({ value, onChange }) => {
         <InputPrefix />
       </SearchBarWrapper>
       {value === '' && !hasMounted.current && <SearchHint />}
+      {/* {value === '' && !hasMounted.current && <div />} */}
     </>
   );
 };
